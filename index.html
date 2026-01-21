@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>No Leader - Grub Tanpa ketua kelas</title>
+    <style>
+        /* --- 1. SETTING DASAR (ANTI-COPY) --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Warna Hitam ala Fizzo */
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            /* Mematikan Seleksi Teks */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        /* --- 2. CONTAINER --- */
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Teks Novel (Gaya Wattpad/Fizzo) */
+        .novel-content {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left; /* Rata kiri biar rapi di HP */
+            white-space: pre-wrap; /* Enter terbaca otomatis */
+            padding-bottom: 20px;
+        }
+
+        /* Mode Laptop (Otomatis lebih besar) */
+        @media (min-width: 768px) {
+            .novel-content {
+                font-size: 20px;
+                line-height: 2;
+                text-align: justify;
+                padding: 0 40px;
+            }
+        }
+
+        /* --- 3. TOMBOL (FIXED BUG) --- */
+        .btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+            
+            /* INI KUNCI PERBAIKANNYA: */
+            position: relative; 
+            z-index: 10000; /* Tombol ditaruh DI ATAS kaca pelindung */
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-secondary { background-color: #333; color: #aaa; }
+
+        /* Halaman */
+        .page { 
+            display: none; 
+            padding: 20px; 
+            box-sizing: border-box;
+            /* Agar halaman tidak numpuk aneh */
+            width: 100%;
+        }
+        .page.active { 
+            display: block; 
+            animation: fadeIn 0.5s; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Watermark */
+        .watermark {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 4vw; color: rgba(255,255,255,0.03);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Intro Screen (Tengah Layar) */
+        .intro-wrapper {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .intro-title { color: #4caf50; font-size: 32px; margin-bottom: 5px; }
+        .intro-author { color: #888; margin-bottom: 30px; font-weight: normal; }
+
+        /* Kaca Pelindung (Shield) */
+        .glass-shield {
+            position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%;
+            z-index: 9999; /* Di bawah tombol (10000), tapi di atas teks */
+            background: transparent; 
+            display: none;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="watermark">NURIZ FATHI ABDILLAH</div>
+
+    <div class="main-container">
+
+        <div id="page-intro" class="page active">
+            <div class="intro-wrapper">
+                <h1 class="intro-title">NO LEADER - Grub Tanpa Ketua Kelas</h1>
+                <h3 class="intro-author">BAB 1 Kunci Cadangan</h3>
+                
+                <div style="background:#1e1e1e; padding:15px; border-radius:10px; margin-bottom:30px;">
+                    <p style="margin:5px; color:#aaa; font-size:14px;">Instagram:</p>
+                    <p style="margin:5px; color:#fff;">@Nurizwith_ctrl</p>
+                    <p style="margin:5px; color:#fff;">@ByFlux20</p>
+                </div>
+
+                <p style="color:#666; font-size:14px;">Pilih Mode Baca:</p>
+                <button class="btn" onclick="startReading('hp')">📱 HP Mode</button>
+                <button class="btn btn-secondary" onclick="startReading('laptop')">💻 Laptop Mode</button>
+            </div>
+        </div>
+
+
+        <div id="page-1" class="page">
+            <div class="novel-content">
+                <h2 style="text-align:center; color:#4caf50; margin-bottom:30px;">BAB 1: Kunci Cadangan</h2>
+                
+                 <p>Malam itu, suhu udara terasa lebih dingin dari biasanya. Aku, Dion, terduduk lesu di depan meja belajar yang berantakan. Cahaya lampu belajar yang mulai meredup membuat bayangan benda-benda di kamarku tampak memanjang dan aneh di dinding. Di depanku, buku paket Matematika terbuka lebar, menampilkan deretan angka yang rasanya seperti mengejekku. Pikiranku buntu.
+​Entah kenapa, bayangan wajah Andra, si Ketua Kelas, terus terlintas di benakku. Tadi siang di sekolah, aku melihatnya duduk di ruang guru sendirian. Dia sedang membantu Bu kepsek merapikan buku induk siswa. Aku ingat betul bagaimana jemari Andra yang lentik itu menelusuri kolom alamat rumah kami satu per satu. Saat aku menyapanya, dia hanya menoleh sedikit, memberikan senyum yang sangat ramah—terlalu ramah hingga terasa seperti topeng. Matanya tidak ikut tersenyum. Matanya kosong, seolah dia sedang menghafal setiap detail letak rumah kami di dalam kepalanya.
+​"Rajin amat, Ndra," kataku saat itu.
+"Cuma mau memastikan nggak ada yang salah, Yon. Data itu penting. Sangat penting," jawabnya pelan, suaranya datar tanpa emosi.
+​Aku tidak menaruh curiga saat itu. Namun sekarang, di tengah keheningan malam pukul delapan, kata-kata itu terdengar seperti ancaman yang tertunda. Aku mencoba mengusir pikiran itu dengan meraih ponsel. Grup WhatsApp kelas 8B "Anti Remedial" sedang ramai. Seperti biasa, Bimo sedang mengeluh soal soal nomor 5, dan Sari mencoba menenangkan suasana. Tapi ada satu hal yang janggal: Andra, sang penguasa grup, tidak muncul sama sekali. Biasanya, dia adalah orang pertama yang akan membagikan clue jawaban atau sekadar mengingatkan kami untuk tidak tidur terlalu larut.</p>
+
+            </div>
+            <button class="btn" onclick="nextPage(2)">Lanjut Halaman 2</button>
+        </div>
+
+
+        <div id="page-2" class="page">
+            <div class="novel-content">
+                
+                <p> Tiba-tiba, sebuah getaran panjang terasa di telapak tanganku. Bukan notifikasi dari grup kelas, melainkan sebuah undangan grup baru.
+​[Anda telah diundang ke grup "." oleh Nomor Tak Dikenal]
+​Jantungku berdegup satu kali lebih kencang. Aku menekan layar ponsel, masuk ke dalam grup yang hanya bernama sebuah titik itu. Daftar anggotanya membuat nafasku tertahan. Sari ada di sana, Bimo ada di sana, bahkan Riko yang sudah sebulan tidak masuk sekolah karena "kecelakaan" pun ada di sana. Seluruh siswa kelas 8B berkumpul di satu ruang digital ini. Semuanya—kecuali Andra.
+​"Eh? Ini grup apa lagi?" aku mengetik, berusaha memecah keheningan yang mulai merayap di hatiku.
+​"Jangan berisik di grup sebelah. Andra bisa baca semuanya," balas sebuah nomor tanpa foto profil.
+​Pesan itu muncul secepat kilat, seolah si pengirim sudah menunggu sejak tadi. Seluruh anggota grup terdiam. Tidak ada yang berani mengetik selama beberapa detik, sampai akhirnya si Nomor Tak Dikenal kembali mengirimkan pesan yang membuat suhu di kamarku terasa turun drastis.
+​"Kalian sadar nggak sih? Setiap kali ada yang mencoba menyaingi Andra, sesuatu yang buruk selalu terjadi."
+​Aku teringat Riko. Bulan lalu, dia baru saja merayakan kemenangannya sebagai peraih nilai tertinggi di ujian biologi, mengalahkan Andra yang selama ini tak terkalahkan. Keesokan harinya, Riko dikabarkan jatuh dari tangga sekolah. Kakinya patah, dan dia harus menjalani operasi besar. Saat itu kami menganggapnya murni kecelakaan. Tapi sekarang, sebuah pertanyaan besar mulai muncul di benakku: Apakah itu benar-benar kecelakaan?
+​"Riko nggak jatuh," tulis Nomor Tak Dikenal itu lagi, seolah bisa membaca pikiranku. "Dia didorong. Dan gue punya rekaman CCTV yang nggak pernah sampai ke tangan guru."</p>
+
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(1)">Kembali</button>
+            <button class="btn" onclick="nextPage(3)">Lanjut Halaman 3</button>
+        </div>
+
+
+        <div id="page-3" class="page">
+            <div class="novel-content">
+                
+                <p>Suasana di grup "." semakin memanas. Bimo, yang memang dikenal paling tidak bisa diam, mulai mengetik dengan cepat.
+​"Ah, masa sih? Jangan-jangan lo cuma mau nakut-nakutin kita doang," tulis Bimo. "Gue kebetulan lagi di luar nih, mau ke fotokopian deket rumah Andra. Gue samperin aja anaknya sekarang. Gue mau tanya langsung apa maksudnya gembok-gembok itu."
+​"Bim, jangan! Balik aja!" Sari membalas dengan huruf kapital semua, menunjukkan kepanikannya.
+​Aku pun ikut mengetik, "Bim, lo nggak liat apa yang dibilang nomor anonim itu? Bahaya!"
+​Tapi Bimo tidak peduli. Dia memang tipikal orang yang harus melihat bukti dengan mata kepalanya sendiri. Lima menit kemudian, ponselku bergetar lagi. Bimo mengirimkan sebuah foto.
+​Itu adalah pagar rumah Andra. Pagar besi hitam yang menjulang tinggi, namun yang mengerikan adalah lilitan rantai baja yang tampak sangat baru, mengunci rapat gerbang itu dengan lima gembok besar yang berbeda bentuk. Di balik pagar itu, rumah Andra tampak seperti peti mati raksasa—gelap, sunyi, dan tanpa tanda-tanda kehidupan. Padahal, baru sore tadi aku melihatnya pulang dengan sepeda motornya.
+​"Gila, rumahnya kok kayak penjara?" tulis Bimo di bawah foto itu. "Dan lampunya mati semua. Padahal kata nyokapnya tadi sore dia sudah di rumah."
+​"Bim, mending lo balik deh. Serem banget liat pagernya doang," Sari menimpali.
+​"Bentar... gue denger suara aneh dari dalem. Kayak suara logam digosok... atau gerinda?" tulis Bimo lagi. "Gue coba ngintip dari jendela samping yang nggak ketutup gorden ya. Gue mau liat dia lagi ngapain."
+​Aku merasa ada sesuatu yang salah. Sangat salah. Perasaan ini persis seperti saat aku melihat Andra menatap buku induk alamat siswa tadi siang. Aku teringat kata-katanya di video yang kamu kirim: sebuah plot twist yang bagus harus menebar petunjuk dari awal secara tersirat. Dan petunjuk itu ada di sana, di depan mataku: Andra tidak sedang menghafal alamat kami untuk berteman. Dia sedang memetakan targetnya.</p>
+
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(2)">Kembali</button>
+            <button class="btn" onclick="nextPage(4)">Lanjut Halaman 4</button>
+        </div>
+
+
+        <div id="page-4" class="page">
+            <div class="novel-content">
+                <p>Sepuluh menit berlalu. Bimo tidak lagi mengirim pesan. Grup "." mendadak senyap, hanya menyisakan deretan pesan Sari yang terus memanggil nama Bimo. Aku menatap layar ponselku hingga mataku perih, berharap ada balasan dari Bimo.
+​Tiba-tiba, sebuah Voice Note masuk dari Bimo.
+​Aku gemetar saat menekan tombol play. Suara yang terdengar bukan lagi suara Bimo yang santai dan penuh canda. Suaranya serak, bisik-bisik, dan penuh dengan ketakutan yang murni. Di latar belakang, terdengar suara angin yang menderu keras.
+​"Guys... gue... gue berhasil ngintip," suara Bimo terputus-putus. "Di dalem kamar Andra... kalian nggak bakal percaya. Dindingnya penuh sama foto kita. Foto pas kita lagi di kantin, lagi ketawa, bahkan ada foto gue lagi tidur di kamar gue sendiri semalem! Dia motret gue dari luar jendela!"
+​Aku menutup mulutku dengan tangan. Jantungku berpacu begitu cepat hingga rasanya mau melompat keluar.
+​"Dan yang paling parah..." suara Bimo mulai menangis, "Di atas mejanya... ada tumpukan kunci. Banyak banget kunci yang dikasih label nama kita masing-masing. Ada label nama Sari, Dion... dan gue liat kunci dengan label nama 'BIMO' ada di tangan dia sekarang."</p>
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(3)">Kembali</button>
+            <button class="btn" onclick="nextPage(5)">Lanjut Halaman 5</button>
+        </div>
+
+
+        <div id="page-5" class="page">
+            <div class="novel-content">
+                <p>Setelah Voice Note mengerikan dari Bimo itu berhenti, aku merasa udara di kamarku sendiri mendadak menjadi sangat tipis. Jari-jariku kaku di atas layar ponsel yang kini terasa sangat panas. Di grup ".", semua orang mulai panik. Sari mengirimkan puluhan pesan menanyakan keberadaan Bimo, namun hanya ada tanda centang satu.
+​Lalu, sebuah pesan teks masuk dari Bimo. Singkat, namun membuat seluruh tubuhku lemas.
+​"Kunci motor gue nggak ada. Gue terjebak di sini."
+​Secepat kilat, aku membalas, "Lari, Bim! Jangan peduliin motor lo! Lari ke jalan raya!"
+​Namun, balasan Bimo berikutnya adalah kalimat yang akan menghantuiku selamanya:
+​"Dia sudah di belakang gue. Dia cuma berdiri... sambil megang kunci dengan nama gue."
+​Detik berikutnya, sebuah notifikasi sistem muncul di layar:
+[Bimo telah keluar dari grup.]
+​Layar ponselku mendadak redup, seolah-olah seluruh harapan ikut padam bersamaan dengan hilangnya Bimo dari grup itu. Si Nomor Tak Dikenal kembali mengetik, memberikan kenyataan pahit yang tidak ingin kami dengar.
+​"Bimo sudah terlambat. Kalian pikir kenapa dia begitu rajin membantu guru mengurus data siswa setiap semester? Dia tidak hanya mencuri alamat kalian. Dia sedang memastikan setiap pintu masuk rumah kalian bisa dibuka dengan kunci yang dia pegang."</p>
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(4)">Kembali</button>
+            <button class="btn" onclick="nextPage(6)">Lanjut Halaman 6</button>
+        </div>
+
+
+        <div id="page-6" class="page">
+            <div class="novel-content">
+                <p>Aku mematikan lampu meja belajarku. Kamarku kini gelap total, hanya menyisakan cahaya remang dari layar HP. Aku mencoba mengatur napas, meyakinkan diriku bahwa ini semua hanya lelucon yang keterlaluan. Orang tuaku sedang pergi ke acara pernikahan kerabat dan baru akan pulang tengah malam nanti. Aku sendirian.
+​Tiba-tiba, telingaku menangkap sebuah suara. Bukan suara angin, bukan juga suara gesekan dahan pohon di jendela.
+​Kriet... Klik.
+​Itu suara logam yang bertemu dengan logam. Suara kunci yang diputar dengan sangat halus di lubang pintu depan rumahku. Suara itu begitu pelan, namun di tengah kesunyian malam, bunyinya terdengar seperti ledakan di telingaku.
+​Andra sudah di sini. Dia tidak mengetuk. Dia tidak memanggil. Dia langsung masuk menggunakan "hak istimewa" yang dia curi dari data sekolah.
+​Aku teringat tips dari video tentang foreshadowing; petunjuk itu sudah ada sejak siang tadi saat aku melihat tumpukan kunci di tasnya, dan sekarang, kunci itu sedang bekerja membuka jalan menuju kamarku.
+​Aku harus bergerak. Sekarang. Sebelum langkah kakinya sampai ke depan pintu kamarku.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(5)">Kembali</button>
+            <button class="btn" onclick="nextPage(7)">Lanjut Halaman 7</button>
+        </div>
+
+
+        <div id="page-7" class="page">
+            <div class="novel-content">
+                <p>Suara Kriet... Klik itu masih menggema di telingaku, lebih horor daripada suara guru killer yang sedang mengabsen murid di pagi hari. Aku terlonjak dari kursi belajar, hampir saja menjatuhkan tumpukan buku paket yang beratnya selangit. Pintu depan rumahku benar-benar terbuka. Seseorang baru saja masuk dengan kunci yang seharusnya hanya dipegang oleh ibuku.
+​Dalam keadaan panik, otakku mendadak tidak bisa diajak kompromi. Pilihannya hanya dua: lari ke luar jendela atau sembunyi. Mengingat jendela kamarku dipasangi teralis besi yang hanya bisa dilewati oleh seekor cicak, aku memilih pilihan kedua. Dengan gerakan yang lebih lincah daripada saat ujian olahraga, aku mematikan lampu kamar secepat kilat. Kamar pun gelap total. Aku merangkak di lantai, menghindari kabel casan HP yang melilit seperti jebakan Batman, dan menyusup ke bawah kasur.
+​Di bawah sini, suasana benar-benar tidak estetik. Ada debu yang membuat hidungku gatal setengah mati dan sebuah kaos kaki yang entah sudah berapa minggu hilang. Aku menahan napas, menekan dadaku sendiri agar suara detak jantungku tidak terdengar sampai ke ruang tamu. Ponsel di tanganku masih menyala redup. Layarnya menampilkan chat dari Sari di grup "." yang baru saja masuk.
+​"Yon! Lo masih di sana kan?! Andra baru aja lewat depan rumah gue pake motor Bimo! Dia nggak pake helm, Yon! Mukanya lempeng banget kayak orang nggak punya dosa!" tulis Sari.
+​Aku ingin membalas, tapi jemariku mendadak kaku. Dari luar kamar, aku mendengar suara langkah kaki. Tap... tap... tap... Langkah itu sangat tenang, sangat berirama, seolah orang yang sedang berjalan itu sedang berada di rumahnya sendiri. Langkah itu berhenti tepat di depan pintu kamarku.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(6)">Kembali</button>
+            <button class="btn" onclick="nextPage(8)">Lanjut Halaman 8</button>
+        </div>
+
+
+        <div id="page-8" class="page">
+            <div class="novel-content">
+                
+                <p>Keheningan yang terjadi selanjutnya adalah jenis keheningan yang paling menyiksa dalam hidupku. Aku bisa melihat sepasang sepatu kets putih yang bersih—sepatu yang sangat kukenali sebagai sepatu kesayangan Andra—berhenti tepat di celah bawah pintu kamarku. Bayangannya memanjang, masuk ke dalam kamarku yang gelap.
+​Lalu, terdengar suara tarikan napas panjang dari luar pintu.
+​"Dion? Belum tidur kan? Tadi kamu bilang di grup sebelah belum selesai nomor 5," suara Andra terdengar sangat santai, hampir ramah, yang justru membuatnya sepuluh kali lebih menyeramkan. "Aku bawain catatan punyaku nih. Biar besok kamu nggak kena hukum Bu Ratna lagi."
+​Aku menggigit bibirku kuat-kuat supaya tidak berteriak. Bagaimana bisa dia bicara seolah-olah tidak ada yang salah? Bagaimana bisa dia masuk ke rumah orang tanpa izin dan menawarkan bantuan PR di jam sembilan malam? Ini adalah puncak dari segala kepalsuan yang dia tunjukkan di sekolah.
+​Tiba-tiba, gagang pintu kamarku bergerak. Ceklek... Ceklek... Dia mencoba membukanya. Beruntung, aku sempat mengunci pintu kamar dari dalam tadi. Namun, harapanku pupus saat aku mendengar suara gemerincing logam di luar sana. Suara tumpukan kunci yang saling beradu.
+​"Ah, dikunci ya?" gumam Andra pelan, disusul tawa kecil yang terdengar sangat hambar. "Untung aku bawa cadangannya. Alamat rumahmu emang agak susah dicari tadi, tapi peta di buku induk sekolah emang nggak pernah salah."
+​Aku melihat kunci perak menyelinap masuk ke dalam lubang kunci pintuku dari luar. Napas naga dari debu di bawah kasur mulai menyerang hidungku lagi. Aku ingin bersin. Aku benar-benar ingin bersin sekarang juga. Di saat maut sedang memutar kunci kamarku, fisikku malah mengajak bercanda.
+​Cklek. Pintu terbuka. Sinar lampu dari lorong masuk ke dalam kamarku, membentuk garis cahaya yang membelah kegelapan. Sepatu putih itu melangkah masuk.
+​APAKAH DION AKAN KETAHUAN GARA-GARA BERSIN? DAN APA YANG SEBENARNYA MAU DILAKUKAN ANDRA DENGAN CATATAN PR-NYA?</p>
+
+                <br><hr style="border-color:#333; margin: 30px 0;"><br>
+                <p style="text-align:center; color:#4caf50; font-weight:bold;">BERSAMBUNG KE BAB 2</p>
+                <p style="text-align:center; font-size:14px; color:#888;">
+                    Kirim DM ke IG @Nurizwith_ctrl / @ByFlux20<br>
+                    Isi pesan: "BAB 2 NO LEADER"
+                </p>
+
+            </div>
+            <button class="btn btn-secondary" onclick="prevPage(7)">Kembali</button>
+            <button class="btn" onclick="selesai()">Selesai Baca</button>
+        </div>
+
+    </div>
+
+    <script>
+        function startReading(mode) {
+            // Sembunyikan Intro
+            document.getElementById('page-intro').classList.remove('active');
+            // Munculkan Halaman 1
+            document.getElementById('page-1').classList.add('active');
+            
+            // Aktifkan Shield Kaca (Anti Maling)
+            let shield = document.createElement('div');
+            shield.className = 'glass-shield';
+            shield.style.display = 'block';
+            document.body.appendChild(shield); 
+            
+            // Mode Fullscreen Laptop
+            if(mode === 'laptop') {
+                toggleFullScreen();
+            }
+            // Scroll ke atas
+            window.scrollTo(0,0);
+        }
+
+        function nextPage(num) {
+            hideAllPages();
+            document.getElementById('page-' + num).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function prevPage(num) {
+            hideAllPages();
+            document.getElementById('page-' + num).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function hideAllPages() {
+            let pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(e => console.log(e));
+            }
+        }
+
+        function selesai() {
+            alert("Terima kasih sudah membaca!");
+        }
+
+        // Anti Keyboard Shortcut
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 85)) {
+                return false;
+            }
+        };
+    </script>
+</body>
+</html>
